@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 public class choosingTheme extends AppCompatActivity {
+    private Spinner spinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +30,13 @@ public class choosingTheme extends AppCompatActivity {
 
 
     public void startButton(View v) {
-        Intent intent = new Intent(this, choosingTheme.class);
-        intent.putExtra("trivia name", "name");
+        spinner = (Spinner) findViewById(R.id.spinner1);
+
+        Intent intent = new Intent(this, questionScreen.class);
+
+        System.out.println(String.valueOf(spinner.getSelectedItem()));
+
+        intent.putExtra("trivia name", String.valueOf(spinner.getSelectedItem()));
 
         startActivity(intent);
 
