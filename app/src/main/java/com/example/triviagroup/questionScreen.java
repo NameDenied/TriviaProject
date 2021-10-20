@@ -40,13 +40,13 @@ public class questionScreen extends AppCompatActivity {
             int chosen = (int)(Math.random()*len);
             while(found){
                 System.out.println(chosen+" CHOSENNNNNN");
-                found = true;
+                found = false;
                 for(int i = 0; i < useQ.length; i++){
                     if(useQ[i] == chosen){
-                        found = false;
+                        found = true;
                     }
                 }
-                if(found){
+                if(!found){
                     askQ[5-count] = Questions[index][chosen][0];
                     useQ[5-count] = chosen;
                 }else{
