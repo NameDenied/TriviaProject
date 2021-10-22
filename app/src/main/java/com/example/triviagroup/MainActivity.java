@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
-
+        emailET = findViewById(R.id.editTextTextPersonName);
     }
 
     @Override
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        authStatusTV = findViewById(R.id.authTV);
         if(currentUser != null){
             authStatusTV.setText("onStart reloaded and " + currentUser.getEmail() + " is logged in");
             // Take any action needed here when screen loads and a user is logged in
@@ -47,17 +48,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void handleAuthChange(View v) {
         String email = emailET.getText().toString();
-        String password = passwordET.getText().toString();
+        String password = "password";//passwordET.getText().toString();
         Log.i("Denna",  email + " " + password);
 
         switch (v.getId()) {
             case R.id.signIn:
-                signIn(email, password);
+                signIn(email, "password");
                 //
                 break;
             case R.id.signUp:
                 //
-                signUp(email, password);
+                signUp(email, "password");
                 break;
 
         }
