@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -32,13 +34,40 @@ public class questionScreen extends AppCompatActivity {
             System.out.println("INNNNNNNNNNNNNNNNN");
             index = 0;
         }
+
+        else if (category.equals("Star Wars")) {
+            System.out.println("INNNNNNNNNNNNNNNNN");
+            index = 1;
+        }
+        else if (category.equals("Sports")) {
+            System.out.println("INNNNNNNNNNNNNNNNN");
+            index = 2;
+        }
+        else if (category.equals("Disney")) {
+            System.out.println("INNNNNNNNNNNNNNNNN");
+            index = 3;
+        }
+        else{
+            index = 4;
+        }
+
+
 //        String[][] correctA = {{"Tony Stark", "6","The ten rings","25","Wakanda", "Loki","Clint Barton","God of Mischief"}};
         String[][] marvel = {{"What is Iron Man’s real name?", "Tony Stark", "Peter Parker", "Steve Rogers"}, {"How many infinity stones does Thanos need?", "6", "4", "3"}, {"What is the main weapon used by Shang Chi and his father?", "The ten rings", "Infinity Gauntlet", "Mjollnir"}, {"How many Marvel movies have been made?", "25", "18", "23"},{"What is the setting of Black Panther?", "Wakanda", "Australia", "China", "Asgard"}, {"What is the name of Thor’s brother?", "Loki", "Deadpool", "Odin"}, {"What is Hawkeye's real name?", "Bart CLinton", "Clint Barton", "Cole Philson"}, {"What is Loki's title?", "God of Mischief", "God of Evil", "God of Tricks"}};
         String[][] starWars = {{"What is the name of Luke Skywalker’s father?", "Anakin", "Obi-wan", "Yoda", "Qui Gon Jin"},
                 {"What are the names of the empires troops?", "Clonetroopers", "Droids", "Rebels", "gunslingers"},{"How old is Yoda", "900","10000","55","105"},{"How was Obi-wan related to Luke?","Teacher","Father","Friend","Uncle"},{"What planet was Luke's Family from","Tatooine","Mustafar", "Nabu", "Earth"},{"What was the name of Luke's Apprentice that goes Rouge","Kylo Ren","Rey palpatine","Leia Skywalker", "Han Solo"},{"What was the name of the ship that destroyed Nabu?","Death Star I","Death Star II","X-wing","Tie-Fighter"},{"What are the names of the two droids that Anakin owned throughout his life?","C-3PO,R2D2","C-3PO,BB8","BB8,R2D2","C-3PO,C9R1"}};
+        String[][] sports = {{"What does the NBA Stand for?","National Basketball Association", "National Baseball Association", " National Badminton Academy"},{"Who holds the record for most home runs in one season?", "Barry Bonds", "Babe Ruth", "Shohei Ohtani"},{"Who was the first NBA Player to test positive for Covid-19?", "Rudy Gobert", "Donavon Mitchell", "Bojan Bodanovic"},{"Which franchise in the NFL has the most Super Bowl Wins?", "New England Patriots", "Chicago Bears", "Green Bay Packers"},{"How many teams are there in the MLB?","30","26","20"},{"Which NBA team has the most championships of all time (As of 2019)?", "Boston Celtics", "Los Angeles Lakers","Golden State Warriors"},
+                {"Who leads the NBA in all-time scoring?","Kareem Abdul-Jabbar","Michael Jordan", "LeBron James"},{"Who won the 2021 WNBA Championship?", "Chicago Sky","Phoenix Mercury","New York Liberty"}};
+        String[][] disney = {{"What is the name of Andy’s neighbor in Toy Story?","Sid","Tom","Alex","Mike"},{"What does the famous lion king phrase, “Akunama Tatta” mean?", "“ No worries”","“ Helping others is important”", "“Living the easy life”", "“Working to Survive”"},{"In Cars 1 who wins the big race?","Chick Hicks", "Doc Hudson", "Lightning McQueen", "Dinoco Blue"}, {"In Finding Nemo Nemo and his father are what type of fish?", "Clownfish", "Angelfish", "Sunfish", "Goldfish"}, {"In the movie Pinocchio, Pinocchio's one true dream is?", "Become a real boy", "To get rich", "Live forever", "Be the best sorcerer"},
+                {" In the movie Dumbo what was Dumbo famous for?", "His ability to fly with his big ears", "His big feet", "His intelligence and ability to talk to other people", "His ability to pull huge amounts of weight"}, {"In the movie Snow white, Snow white was poisoned by which fruit?", "Apple", "Orange", "Watermelon", "Strawberry"}, {"In the movie Ratatouille Remy loves doing what most?", "Cooking food", "Scavenging for Food", "Swimming in the river", "Running for his life"}};
+        String[][] dcComics ={{"What's Superman's birth name?", "Kal'el", "Clark", "Kent"}, {"Which superhero was modeled after the Amazons of Ancient Greece?", "Wonder Woman", "Athena", "Harley Quinn"}, {"What's the name of Batman's butler?", "Alfred", "James", "Henry"}, {"To which villain is Harley Quinn attached to?", "Joker", "Two-Face", "Bane"}, {"What does DC stand for?", "Detective Comics", "District Comics", "Day Comics"}, {"Who is Superman's archnemesis?", "Lex Luthor", "Batman", "Doomsday"}, {"Who killed Thomas and Martha Wayne?", "Joe Chill", " The Joker", "The Penguin"}, {"Which superhero was born with the curse of Kordax?", "Aquaman", "Wonder Woman", "Green Lantern"}};
 
         //String[][][] Questions = {{{"What is Iron Man’s real name?", "Peter Parker", "Tony Stark", "Steve Rogers"}, {"How many infinity stones does Thanos need?", "3", "4", "6"}, {"What is the main weapon used by Shang Chi and his father?", "The ten rings", "Infinity Gauntlet", "Mjollnir"}, {"How many Marvel movies have been made?", "23", "18", "25"},{"What is the setting of Black Panther?", "Australia", "Wakanda", "China", "Asgard"}, {"What is the name of Thor’s brother?", "Deadpool", "Loki", "Odin"}, {"What is Hawkeye's real name?", "Bart CLinton", "Clint Barton", "Cole Philson"}, {"What is Loki's title?", "God of Mischief", "God of Evil", "God of Tricks"}}};
-        Question[][] Questions = {{new Question(marvel[0]), new Question(marvel[1]), new Question(marvel[2]), new Question(marvel[3]),new Question(marvel[4]),new Question(marvel[5]),new Question(marvel[6]), new Question(marvel[7])}};
+        Question[][] Questions = {{new Question(marvel[0]), new Question(marvel[1]), new Question(marvel[2]), new Question(marvel[3]),new Question(marvel[4]),new Question(marvel[5]),new Question(marvel[6]), new Question(marvel[7])},
+                {new Question(starWars[0]), new Question(starWars[1]), new Question(starWars[2]), new Question(starWars[3]),new Question(starWars[4]),new Question(starWars[5]),new Question(starWars[6]), new Question(starWars[7])},
+                {new Question(sports[0]), new Question(sports[1]), new Question(sports[2]), new Question(sports[3]),new Question(sports[4]),new Question(sports[5]),new Question(sports[6]), new Question(sports[7])},
+                {new Question(disney[0]), new Question(disney[1]), new Question(disney[2]), new Question(disney[3]),new Question(disney[4]),new Question(disney[5]),new Question(disney[6]), new Question(disney[7])},
+                {new Question(dcComics[0]), new Question(dcComics[1]), new Question(dcComics[2]), new Question(dcComics[3]),new Question(dcComics[4]),new Question(dcComics[5]),new Question(dcComics[6]), new Question(dcComics[7])}};
         Question[] questionOrder = new Question[marvel.length];
         int len = Questions[index].length;
         System.out.println(len);
@@ -151,27 +180,41 @@ public class questionScreen extends AppCompatActivity {
         if(askQ[ind].getCorrectAnswer().equals(SelectedAnswer)){
             System.out.println("CORRECTOMUNDO");
             pointsEarned = pointsEarned+1;
+
         }else{
             System.out.println("OOF YOU SUCK");
         }
-        ind = ind + 1;
-        TextView ThemeText = findViewById(R.id.themeText);
-        ThemeText.setText(askQ[ind].getQuestion());
-        String[] items = new String[askQ[ind].getAnswer().length];
-        //String[] items = new String[]{askQ[0].getAnswer()[0], askQ[0].getAnswer()[1], askQ[0].getAnswer()[2], askQ[0].getAnswer()[3]};
-        if(items.length == 3){
-            items[0] = askQ[ind].getAnswer()[0];
-            items[1] = askQ[ind].getAnswer()[1];
-            items[2] = askQ[ind].getAnswer()[2];
-        }else if(items.length == 4){
-            items[0] = askQ[ind].getAnswer()[0];
-            items[1] = askQ[ind].getAnswer()[1];
-            items[2] = askQ[ind].getAnswer()[2];
-            items[3] = askQ[ind].getAnswer()[3];
-        }
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
+        final Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Do something after 100ms
+                System.out.println("IT RUNSS");
+                ind = ind + 1;
+                ind = Math.min(ind, 4);
+                if (ind < 5){
+                    TextView ThemeText = findViewById(R.id.themeText);
+                    ThemeText.setText(askQ[ind].getQuestion());
+                    String[] items = new String[askQ[ind].getAnswer().length];
+                    //String[] items = new String[]{askQ[0].getAnswer()[0], askQ[0].getAnswer()[1], askQ[0].getAnswer()[2], askQ[0].getAnswer()[3]};
+                    if(items.length == 3){
+                        items[0] = askQ[ind].getAnswer()[0];
+                        items[1] = askQ[ind].getAnswer()[1];
+                        items[2] = askQ[ind].getAnswer()[2];
+                    }else if(items.length == 4){
+                        items[0] = askQ[ind].getAnswer()[0];
+                        items[1] = askQ[ind].getAnswer()[1];
+                        items[2] = askQ[ind].getAnswer()[2];
+                        items[3] = askQ[ind].getAnswer()[3];
+                    }
 
-        System.out.println(askQ[ind].getCorrectAnswer());
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        dropdown.setAdapter(adapter);
+                    System.out.println(askQ[ind].getCorrectAnswer());
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
+                    dropdown.setAdapter(adapter);
+                }
+            }
+        }, 300);
+//        System.out.println("IT RUNSSSSS222222");
     }
 }
