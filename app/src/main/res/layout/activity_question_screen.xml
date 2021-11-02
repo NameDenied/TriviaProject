@@ -71,4 +71,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.754" />
+    <selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item android:state_pressed="true"android:values="@color/green"/>
+        <item android:state_pressed="false" android:values="red"/>
+
+    </selector>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -181,6 +181,7 @@ public class questionScreen extends AppCompatActivity {
             System.out.println("CORRECTOMUNDO");
             pointsEarned = pointsEarned+1;
 
+
         }else{
             System.out.println("OOF YOU SUCK");
         }
@@ -217,4 +218,6 @@ public class questionScreen extends AppCompatActivity {
         }, 300);
 //        System.out.println("IT RUNSSSSS222222");
     }
+
+
 }
