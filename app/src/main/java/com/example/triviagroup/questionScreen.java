@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -16,7 +17,8 @@ public class questionScreen extends AppCompatActivity {
     String[] tst = {"What is life", "george", "god", "death"};
     Question[] askQ = {new Question(tst),new Question(tst),new Question(tst),new Question(tst),new Question(tst)};
     int ind = 0;
-
+    ImageView images = findViewById(R.id.imageView2);
+    int index = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class questionScreen extends AppCompatActivity {
         ThemeTextMAIN.setText(category);
         System.out.println(category);
 
-        int index = -1;
+
         if(category.equals("Marvel")){
             System.out.println("INNNNNNNNNNNNNNNNN");
             index = 0;
@@ -54,6 +56,7 @@ public class questionScreen extends AppCompatActivity {
 
 //        String[][] correctA = {{"Tony Stark", "6","The ten rings","25","Wakanda", "Loki","Clint Barton","God of Mischief"}};
         String[][] marvel = {{"What is Iron Man’s real name?", "Tony Stark", "Peter Parker", "Steve Rogers"}, {"How many infinity stones does Thanos need?", "6", "4", "3"}, {"What is the main weapon used by Shang Chi and his father?", "The ten rings", "Infinity Gauntlet", "Mjollnir"}, {"How many Marvel movies have been made?", "25", "18", "23"},{"What is the setting of Black Panther?", "Wakanda", "Australia", "China", "Asgard"}, {"What is the name of Thor’s brother?", "Loki", "Deadpool", "Odin"}, {"What is Hawkeye's real name?", "Bart CLinton", "Clint Barton", "Cole Philson"}, {"What is Loki's title?", "God of Mischief", "God of Evil", "God of Tricks"}};
+        String[] marvelImages = {"ironman.jpg", "thanos.jpg", "shangchi.jpg", "marvel.jpg", "blackpanther.jpg", "thor.jpg", "hawkeye.jpg", "loki.jpg"};
         String[][] starWars = {{"What is the name of Luke Skywalker’s father?", "Anakin", "Obi-wan", "Yoda", "Qui Gon Jin"},
                 {"What are the names of the empires troops?", "Clonetroopers", "Droids", "Rebels", "gunslingers"},{"How old is Yoda", "900","10000","55","105"},{"How was Obi-wan related to Luke?","Teacher","Father","Friend","Uncle"},{"What planet was Luke's Family from","Tatooine","Mustafar", "Nabu", "Earth"},{"What was the name of Luke's Apprentice that goes Rouge","Kylo Ren","Rey palpatine","Leia Skywalker", "Han Solo"},{"What was the name of the ship that destroyed Nabu?","Death Star I","Death Star II","X-wing","Tie-Fighter"},{"What are the names of the two droids that Anakin owned throughout his life?","C-3PO,R2D2","C-3PO,BB8","BB8,R2D2","C-3PO,C9R1"}};
         String[][] sports = {{"What does the NBA Stand for?","National Basketball Association", "National Baseball Association", " National Badminton Academy"},{"Who holds the record for most home runs in one season?", "Barry Bonds", "Babe Ruth", "Shohei Ohtani"},{"Who was the first NBA Player to test positive for Covid-19?", "Rudy Gobert", "Donavon Mitchell", "Bojan Bodanovic"},{"Which franchise in the NFL has the most Super Bowl Wins?", "New England Patriots", "Chicago Bears", "Green Bay Packers"},{"How many teams are there in the MLB?","30","26","20"},{"Which NBA team has the most championships of all time (As of 2019)?", "Boston Celtics", "Los Angeles Lakers","Golden State Warriors"},
