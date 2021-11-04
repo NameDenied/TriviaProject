@@ -5,15 +5,16 @@ public class Question {
     private String question;
     private String[] answer;
     private String correct;
-
+    private String image;
     public Question(String[] questionA){
         question = questionA[0];
-        answer = new String[questionA.length-1];
-        correct = questionA[1];
-        String[] temp = new String[questionA.length-1];
+        answer = new String[questionA.length-2];
+        correct = questionA[2];
+        image = questionA[1];
+        String[] temp = new String[questionA.length-2];
 
         for(int i = 0; i < answer.length; i++ ){
-            temp[i] = questionA[i+1];
+            temp[i] = questionA[i+2];
         }
         int[] used = new int[questionA.length-1];
         for(int i = 0; i < answer.length; i++){
@@ -43,7 +44,9 @@ public class Question {
     public String[] getAnswer(){
         return answer;
     }
-
+    public String getImage(){
+        return image;
+    }
     }
 
 

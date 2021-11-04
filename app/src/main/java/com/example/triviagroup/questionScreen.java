@@ -17,13 +17,13 @@ public class questionScreen extends AppCompatActivity {
     String[] tst = {"What is life", "george", "god", "death"};
     Question[] askQ = {new Question(tst),new Question(tst),new Question(tst),new Question(tst),new Question(tst)};
     int ind = 0;
-    ImageView images = findViewById(R.id.imageView2);
+
     int index = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_screen);
-
+        ImageView images = findViewById(R.id.imageView2);
         Intent intent = getIntent();
 
         String category = intent.getStringExtra("trivia name");
@@ -55,15 +55,20 @@ public class questionScreen extends AppCompatActivity {
 
 
 //        String[][] correctA = {{"Tony Stark", "6","The ten rings","25","Wakanda", "Loki","Clint Barton","God of Mischief"}};
-        String[][] marvel = {{"What is Iron Man’s real name?", "Tony Stark", "Peter Parker", "Steve Rogers"}, {"How many infinity stones does Thanos need?", "6", "4", "3"}, {"What is the main weapon used by Shang Chi and his father?", "The ten rings", "Infinity Gauntlet", "Mjollnir"}, {"How many Marvel movies have been made?", "25", "18", "23"},{"What is the setting of Black Panther?", "Wakanda", "Australia", "China", "Asgard"}, {"What is the name of Thor’s brother?", "Loki", "Deadpool", "Odin"}, {"What is Hawkeye's real name?", "Bart CLinton", "Clint Barton", "Cole Philson"}, {"What is Loki's title?", "God of Mischief", "God of Evil", "God of Tricks"}};
-        String[] marvelImages = {"ironman.jpg", "thanos.jpg", "shangchi.jpg", "marvel.jpg", "blackpanther.jpg", "thor.jpg", "hawkeye.jpg", "loki.jpg"};
-        String[][] starWars = {{"What is the name of Luke Skywalker’s father?", "Anakin", "Obi-wan", "Yoda", "Qui Gon Jin"},
-                {"What are the names of the empires troops?", "Clonetroopers", "Droids", "Rebels", "gunslingers"},{"How old is Yoda", "900","10000","55","105"},{"How was Obi-wan related to Luke?","Teacher","Father","Friend","Uncle"},{"What planet was Luke's Family from","Tatooine","Mustafar", "Nabu", "Earth"},{"What was the name of Luke's Apprentice that goes Rouge","Kylo Ren","Rey palpatine","Leia Skywalker", "Han Solo"},{"What was the name of the ship that destroyed Nabu?","Death Star I","Death Star II","X-wing","Tie-Fighter"},{"What are the names of the two droids that Anakin owned throughout his life?","C-3PO,R2D2","C-3PO,BB8","BB8,R2D2","C-3PO,C9R1"}};
-        String[][] sports = {{"What does the NBA Stand for?","National Basketball Association", "National Baseball Association", " National Badminton Academy"},{"Who holds the record for most home runs in one season?", "Barry Bonds", "Babe Ruth", "Shohei Ohtani"},{"Who was the first NBA Player to test positive for Covid-19?", "Rudy Gobert", "Donavon Mitchell", "Bojan Bodanovic"},{"Which franchise in the NFL has the most Super Bowl Wins?", "New England Patriots", "Chicago Bears", "Green Bay Packers"},{"How many teams are there in the MLB?","30","26","20"},{"Which NBA team has the most championships of all time (As of 2019)?", "Boston Celtics", "Los Angeles Lakers","Golden State Warriors"},
-                {"Who leads the NBA in all-time scoring?","Kareem Abdul-Jabbar","Michael Jordan", "LeBron James"},{"Who won the 2021 WNBA Championship?", "Chicago Sky","Phoenix Mercury","New York Liberty"}};
-        String[][] disney = {{"What is the name of Andy’s neighbor in Toy Story?","Sid","Tom","Alex","Mike"},{"What does the famous lion king phrase, “Akunama Tatta” mean?", "“ No worries”","“ Helping others is important”", "“Living the easy life”", "“Working to Survive”"},{"In Cars 1 who wins the big race?","Chick Hicks", "Doc Hudson", "Lightning McQueen", "Dinoco Blue"}, {"In Finding Nemo Nemo and his father are what type of fish?", "Clownfish", "Angelfish", "Sunfish", "Goldfish"}, {"In the movie Pinocchio, Pinocchio's one true dream is?", "Become a real boy", "To get rich", "Live forever", "Be the best sorcerer"},
-                {" In the movie Dumbo what was Dumbo famous for?", "His ability to fly with his big ears", "His big feet", "His intelligence and ability to talk to other people", "His ability to pull huge amounts of weight"}, {"In the movie Snow white, Snow white was poisoned by which fruit?", "Apple", "Orange", "Watermelon", "Strawberry"}, {"In the movie Ratatouille Remy loves doing what most?", "Cooking food", "Scavenging for Food", "Swimming in the river", "Running for his life"}};
-        String[][] dcComics ={{"What's Superman's birth name?", "Kal'el", "Clark", "Kent"}, {"Which superhero was modeled after the Amazons of Ancient Greece?", "Wonder Woman", "Athena", "Harley Quinn"}, {"What's the name of Batman's butler?", "Alfred", "James", "Henry"}, {"To which villain is Harley Quinn attached to?", "Joker", "Two-Face", "Bane"}, {"What does DC stand for?", "Detective Comics", "District Comics", "Day Comics"}, {"Who is Superman's archnemesis?", "Lex Luthor", "Batman", "Doomsday"}, {"Who killed Thomas and Martha Wayne?", "Joe Chill", " The Joker", "The Penguin"}, {"Which superhero was born with the curse of Kordax?", "Aquaman", "Wonder Woman", "Green Lantern"}};
+
+        String[] marvelImages = {Integer.toString(R.drawable.ironman), Integer.toString(R.drawable.thanos), Integer.toString(R.drawable.shangchi), Integer.toString(R.drawable.marvel), Integer.toString(R.drawable.blackpanther), Integer.toString(R.drawable.thor), Integer.toString(R.drawable.hawkeye), Integer.toString(R.drawable.loki)};
+        String[] starWarsImages = {Integer.toString(R.drawable.luke), Integer.toString(R.drawable.clonetrooper), Integer.toString(R.drawable.clonetrooper), Integer.toString(R.drawable.obi), Integer.toString(R.drawable.tatooine), Integer.toString(R.drawable.kylo), Integer.toString(R.drawable.deathstar), Integer.toString(R.drawable.robots)};
+        String[] sportsImages = {Integer.toString(R.drawable.nba), Integer.toString(R.drawable.homerun), Integer.toString(R.drawable.covid), Integer.toString(R.drawable.superbowl), Integer.toString(R.drawable.mlb), Integer.toString(R.drawable.nbatrophy), Integer.toString(R.drawable.kareem), Integer.toString(R.drawable.wnbatrophy)};
+        String[] disneyImages = {Integer.toString(R.drawable.toystory), Integer.toString(R.drawable.lionking), Integer.toString(R.drawable.cars), Integer.toString(R.drawable.nemo), Integer.toString(R.drawable.pino), Integer.toString(R.drawable.dumbo), Integer.toString(R.drawable.snowwhite), Integer.toString(R.drawable.rat)};
+        String[] dcImages = {"supermanflying.jpg", "greece.jpg", "butler.jpg", "quinn.jpg", "dc.jpg", "angrysuperman.jpg", "waynes.jpg", "kordax.jpg"};
+        String[][] marvel = {{"What is Iron Man’s real name?",marvelImages[0], "Tony Stark", "Peter Parker", "Steve Rogers"}, {"How many infinity stones does Thanos need?",marvelImages[1], "6", "4", "3"}, {"What is the main weapon used by Shang Chi and his father?",marvelImages[2], "The ten rings", "Infinity Gauntlet", "Mjollnir"}, {"How many Marvel movies have been made?",marvelImages[3], "25", "18", "23"},{"What is the setting of Black Panther?",marvelImages[4], "Wakanda", "Australia", "China", "Asgard"}, {"What is the name of Thor’s brother?",marvelImages[5], "Loki", "Deadpool", "Odin"}, {"What is Hawkeye's real name?",marvelImages[6], "Bart CLinton", "Clint Barton", "Cole Philson"}, {"What is Loki's title?",marvelImages[7], "God of Mischief", "God of Evil", "God of Tricks"}};
+        String[][] starWars = {{"What is the name of Luke Skywalker’s father?", starWarsImages[0], "Anakin", "Obi-wan", "Yoda", "Qui Gon Jin"},
+                {"What are the names of the empires troops?",starWarsImages[1], "Clonetroopers", "Droids", "Rebels", "gunslingers"},{"How old is Yoda",starWarsImages[2], "900","10000","55","105"},{"How was Obi-wan related to Luke?",starWarsImages[3],"Teacher","Father","Friend","Uncle"},{"What planet was Luke's Family from",starWarsImages[4],"Tatooine","Mustafar", "Nabu", "Earth"},{"What was the name of Luke's Apprentice that goes Rouge",starWarsImages[5],"Kylo Ren","Rey palpatine","Leia Skywalker", "Han Solo"},{"What was the name of the ship that destroyed Nabu?",starWarsImages[6],"Death Star I","Death Star II","X-wing","Tie-Fighter"},{"What are the names of the two droids that Anakin owned throughout his life?",starWarsImages[7],"C-3PO,R2D2","C-3PO,BB8","BB8,R2D2","C-3PO,C9R1"}};
+        String[][] sports = {{"What does the NBA Stand for?",sportsImages[0],"National Basketball Association", "National Baseball Association", " National Badminton Academy"},{"Who holds the record for most home runs in one season?", sportsImages[1], "Barry Bonds", "Babe Ruth", "Shohei Ohtani"},{"Who was the first NBA Player to test positive for Covid-19?",sportsImages[2], "Rudy Gobert", "Donavon Mitchell", "Bojan Bodanovic"},{"Which franchise in the NFL has the most Super Bowl Wins?",sportsImages[3], "New England Patriots", "Chicago Bears", "Green Bay Packers"},{"How many teams are there in the MLB?",sportsImages[4],"30","26","20"},{"Which NBA team has the most championships of all time (As of 2019)?",sportsImages[5], "Boston Celtics", "Los Angeles Lakers","Golden State Warriors"},
+                {"Who leads the NBA in all-time scoring?",sportsImages[6],"Kareem Abdul-Jabbar","Michael Jordan", "LeBron James"},{"Who won the 2021 WNBA Championship?",sportsImages[7], "Chicago Sky","Phoenix Mercury","New York Liberty"}};
+        String[][] disney = {{"What is the name of Andy’s neighbor in Toy Story?",disneyImages[0],"Sid","Tom","Alex","Mike"},{"What does the famous lion king phrase, “Akunama Tatta” mean?",disneyImages[1], "“ No worries”","“ Helping others is important”", "“Living the easy life”", "“Working to Survive”"},{"In Cars 1 who wins the big race?",disneyImages[2],"Chick Hicks", "Doc Hudson", "Lightning McQueen", "Dinoco Blue"}, {"In Finding Nemo Nemo and his father are what type of fish?",disneyImages[3], "Clownfish", "Angelfish", "Sunfish", "Goldfish"}, {"In the movie Pinocchio, Pinocchio's one true dream is?",disneyImages[4], "Become a real boy", "To get rich", "Live forever", "Be the best sorcerer"},
+                {" In the movie Dumbo what was Dumbo famous for?",disneyImages[5], "His ability to fly with his big ears", "His big feet", "His intelligence and ability to talk to other people", "His ability to pull huge amounts of weight"}, {"In the movie Snow white, Snow white was poisoned by which fruit?",disneyImages[6], "Apple", "Orange", "Watermelon", "Strawberry"}, {"In the movie Ratatouille Remy loves doing what most?",disneyImages[7], "Cooking food", "Scavenging for Food", "Swimming in the river", "Running for his life"}};
+        String[][] dcComics ={{"What's Superman's birth name?",dcImages[0], "Kal'el", "Clark", "Kent"}, {"Which superhero was modeled after the Amazons of Ancient Greece?",dcImages[1], "Wonder Woman", "Athena", "Harley Quinn"}, {"What's the name of Batman's butler?",dcImages[2], "Alfred", "James", "Henry"}, {"To which villain is Harley Quinn attached to?",dcImages[3], "Joker", "Two-Face", "Bane"}, {"What does DC stand for?",dcImages[4], "Detective Comics", "District Comics", "Day Comics"}, {"Who is Superman's archnemesis?",dcImages[5], "Lex Luthor", "Batman", "Doomsday"}, {"Who killed Thomas and Martha Wayne?",dcImages[6], "Joe Chill", " The Joker", "The Penguin"}, {"Which superhero was born with the curse of Kordax?",dcImages[7], "Aquaman", "Wonder Woman", "Green Lantern"}};
 
         //String[][][] Questions = {{{"What is Iron Man’s real name?", "Peter Parker", "Tony Stark", "Steve Rogers"}, {"How many infinity stones does Thanos need?", "3", "4", "6"}, {"What is the main weapon used by Shang Chi and his father?", "The ten rings", "Infinity Gauntlet", "Mjollnir"}, {"How many Marvel movies have been made?", "23", "18", "25"},{"What is the setting of Black Panther?", "Australia", "Wakanda", "China", "Asgard"}, {"What is the name of Thor’s brother?", "Deadpool", "Loki", "Odin"}, {"What is Hawkeye's real name?", "Bart CLinton", "Clint Barton", "Cole Philson"}, {"What is Loki's title?", "God of Mischief", "God of Evil", "God of Tricks"}}};
         Question[][] Questions = {{new Question(marvel[0]), new Question(marvel[1]), new Question(marvel[2]), new Question(marvel[3]),new Question(marvel[4]),new Question(marvel[5]),new Question(marvel[6]), new Question(marvel[7])},
@@ -74,6 +79,7 @@ public class questionScreen extends AppCompatActivity {
         Question[] questionOrder = new Question[marvel.length];
         int len = Questions[index].length;
         System.out.println(len);
+
 //        System.out.println(index);
 //        System.out.println(len);
         int count = 5;
@@ -149,6 +155,7 @@ public class questionScreen extends AppCompatActivity {
 //            }
 //        }
         ThemeText.setText(askQ[0].getQuestion());
+        System.out.println(askQ[0].getImage());
         String[] items = new String[askQ[0].getAnswer().length];
         //String[] items = new String[]{askQ[0].getAnswer()[0], askQ[0].getAnswer()[1], askQ[0].getAnswer()[2], askQ[0].getAnswer()[3]};
         if(items.length == 3){
@@ -176,6 +183,8 @@ public class questionScreen extends AppCompatActivity {
 
 
     public void submitQuestion(View v){
+        ImageView images = findViewById(R.id.imageView2);
+
         Spinner dropdown = findViewById(R.id.qspinner);
         String SelectedAnswer = String.valueOf(dropdown.getSelectedItem());
         System.out.println(SelectedAnswer);
@@ -197,6 +206,9 @@ public class questionScreen extends AppCompatActivity {
                 System.out.println("IT RUNSS");
                 ind = ind + 1;
                 ind = Math.min(ind, 4);
+                System.out.println(askQ[ind].getImage());
+                images.setImageResource(R.drawable+askQ[ind].getImage());
+
                 if (ind < 5){
                     TextView ThemeText = findViewById(R.id.themeText);
                     ThemeText.setText(askQ[ind].getQuestion());
