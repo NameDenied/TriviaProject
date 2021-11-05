@@ -3,6 +3,7 @@ package com.example.triviagroup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,7 +18,7 @@ public class questionScreen extends AppCompatActivity {
     String[] tst = {"What is life", "george", "god", "death"};
     Question[] askQ = {new Question(tst),new Question(tst),new Question(tst),new Question(tst),new Question(tst)};
     int ind = 0;
-
+    View ScreenView;//SET IDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
     int index = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class questionScreen extends AppCompatActivity {
         String[] starWarsImages = {Integer.toString(R.drawable.luke), Integer.toString(R.drawable.clonetrooper), Integer.toString(R.drawable.clonetrooper), Integer.toString(R.drawable.obi), Integer.toString(R.drawable.tatooine), Integer.toString(R.drawable.kylo), Integer.toString(R.drawable.deathstar), Integer.toString(R.drawable.robots)};
         String[] sportsImages = {Integer.toString(R.drawable.nba), Integer.toString(R.drawable.homerun), Integer.toString(R.drawable.covid), Integer.toString(R.drawable.superbowl), Integer.toString(R.drawable.mlb), Integer.toString(R.drawable.nbatrophy), Integer.toString(R.drawable.kareem), Integer.toString(R.drawable.wnbatrophy)};
         String[] disneyImages = {Integer.toString(R.drawable.toystory), Integer.toString(R.drawable.lionking), Integer.toString(R.drawable.cars), Integer.toString(R.drawable.nemo), Integer.toString(R.drawable.pino), Integer.toString(R.drawable.dumbo), Integer.toString(R.drawable.snowwhite), Integer.toString(R.drawable.rat)};
-        String[] dcImages = {"supermanflying.jpg", "greece.jpg", "butler.jpg", "quinn.jpg", "dc.jpg", "angrysuperman.jpg", "waynes.jpg", "kordax.jpg"};
+        String[] dcImages = {Integer.toString(R.drawable.supermanflying), Integer.toString(R.drawable.greece), Integer.toString(R.drawable.butler), Integer.toString(R.drawable.quinn), Integer.toString(R.drawable.dc), Integer.toString(R.drawable.angrysuperman), Integer.toString(R.drawable.waynes), Integer.toString(R.drawable.kordax)};
         String[][] marvel = {{"What is Iron Man’s real name?",marvelImages[0], "Tony Stark", "Peter Parker", "Steve Rogers"}, {"How many infinity stones does Thanos need?",marvelImages[1], "6", "4", "3"}, {"What is the main weapon used by Shang Chi and his father?",marvelImages[2], "The ten rings", "Infinity Gauntlet", "Mjollnir"}, {"How many Marvel movies have been made?",marvelImages[3], "25", "18", "23"},{"What is the setting of Black Panther?",marvelImages[4], "Wakanda", "Australia", "China", "Asgard"}, {"What is the name of Thor’s brother?",marvelImages[5], "Loki", "Deadpool", "Odin"}, {"What is Hawkeye's real name?",marvelImages[6], "Bart CLinton", "Clint Barton", "Cole Philson"}, {"What is Loki's title?",marvelImages[7], "God of Mischief", "God of Evil", "God of Tricks"}};
         String[][] starWars = {{"What is the name of Luke Skywalker’s father?", starWarsImages[0], "Anakin", "Obi-wan", "Yoda", "Qui Gon Jin"},
                 {"What are the names of the empires troops?",starWarsImages[1], "Clonetroopers", "Droids", "Rebels", "gunslingers"},{"How old is Yoda",starWarsImages[2], "900","10000","55","105"},{"How was Obi-wan related to Luke?",starWarsImages[3],"Teacher","Father","Friend","Uncle"},{"What planet was Luke's Family from",starWarsImages[4],"Tatooine","Mustafar", "Nabu", "Earth"},{"What was the name of Luke's Apprentice that goes Rouge",starWarsImages[5],"Kylo Ren","Rey palpatine","Leia Skywalker", "Han Solo"},{"What was the name of the ship that destroyed Nabu?",starWarsImages[6],"Death Star I","Death Star II","X-wing","Tie-Fighter"},{"What are the names of the two droids that Anakin owned throughout his life?",starWarsImages[7],"C-3PO,R2D2","C-3PO,BB8","BB8,R2D2","C-3PO,C9R1"}};
@@ -154,6 +155,7 @@ public class questionScreen extends AppCompatActivity {
 //                e.printStackTrace();
 //            }
 //        }
+        images.setImageResource(Integer.parseInt(askQ[0].getImage()));
         ThemeText.setText(askQ[0].getQuestion());
         System.out.println(askQ[0].getImage());
         String[] items = new String[askQ[0].getAnswer().length];
@@ -198,6 +200,7 @@ public class questionScreen extends AppCompatActivity {
             System.out.println("OOF YOU SUCK");
         }
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
+        ScreenView.setBackgroundResource(R.color.green);
         final Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
@@ -207,8 +210,9 @@ public class questionScreen extends AppCompatActivity {
                 ind = ind + 1;
                 ind = Math.min(ind, 4);
                 System.out.println(askQ[ind].getImage());
-                images.setImageResource(R.drawable+askQ[ind].getImage());
 
+                //images.setImageResource(R.drawable.askQ[ind].getImage());
+                images.setImageResource(Integer.parseInt(askQ[ind].getImage()));
                 if (ind < 5){
                     TextView ThemeText = findViewById(R.id.themeText);
                     ThemeText.setText(askQ[ind].getQuestion());
