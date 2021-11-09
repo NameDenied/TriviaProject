@@ -18,8 +18,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     EditText emailET, passwordET;
     TextView authStatusTV;
     public static String theUser;
+    public static String documentId;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                                 FirebaseUser userToAdd = mAuth.getCurrentUser();
                                 Map<String, Object> user = new HashMap<>();
                                 user.put("points", 0);
+                                user.put("gmail", email);
                                 user.put("bg", "White");
                                 user.put("uuid", userToAdd.getUid());
                                 theUser = userToAdd.getUid();
@@ -152,6 +158,27 @@ public class MainActivity extends AppCompatActivity {
                             //theUser = userToAdd.getUid();
                             System.out.println(theUser);
                             authStatusTV.setText("Signed in " + userToAdd.getEmail());
+                            // Create a reference to the cities collection
+                            CollectionReference citiesRef = db.collection("Players");
+                            String curUid = mAuth.getCurrentUser().getUid();
+                            // Create a query against the collection.
+                            Query query = citiesRef.whereEqualTo("uuid", curUid);
+                            db.collection("Players")
+                                    .whereEqualTo("uuid", curUid)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                                    Log.d(TAG, document.getId() + " => " + document.getData());
+                                                    documentId = document.getId();
+                                                }
+                                            } else {
+                                                Log.d(TAG, "Error getting documents: ", task.getException());
+                                            }
+                                        }
+                                    });
                             //db.collection(theUser).addDocument("Points")
 //                            db.collection("Players")
 //                                    .add(user)

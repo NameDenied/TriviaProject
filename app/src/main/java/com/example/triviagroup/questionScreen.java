@@ -13,7 +13,11 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class questionScreen extends AppCompatActivity {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String documentId = MainActivity.documentId;
     int pointsEarned = 0;
     String[] tst = {"What is life", "george", "god", "death"};
     Question[] askQ = {new Question(tst),new Question(tst),new Question(tst),new Question(tst),new Question(tst)};
@@ -194,13 +198,15 @@ public class questionScreen extends AppCompatActivity {
         if(askQ[ind].getCorrectAnswer().equals(SelectedAnswer)){
             System.out.println("CORRECTOMUNDO");
             pointsEarned = pointsEarned+1;
+            System.out.println(db.collection("Players").document(documentId));
+            System.out.println("ASDHDOFHSW");
 
 
         }else{
             System.out.println("OOF YOU SUCK");
         }
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
-        ScreenView.setBackgroundResource(R.color.green);
+        //ScreenView.setBackgroundResource(R.color.green);
         final Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
