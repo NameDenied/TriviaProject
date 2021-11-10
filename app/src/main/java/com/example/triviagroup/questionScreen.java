@@ -1,5 +1,6 @@
 package com.example.triviagroup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,12 +8,17 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class questionScreen extends AppCompatActivity {
@@ -198,7 +204,32 @@ public class questionScreen extends AppCompatActivity {
         if(askQ[ind].getCorrectAnswer().equals(SelectedAnswer)){
             System.out.println("CORRECTOMUNDO");
             pointsEarned = pointsEarned+1;
-            System.out.println(db.collection("Players").document(documentId));
+            //int curpoints = 0;
+            //System.out.println(db.collection("Players").document(documentId));
+            DocumentReference docRef = db.collection("Players").document(documentId);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            long pointsL = (long)document.get("points");
+                            int points = (int)pointsL;
+                            System.out.println(points);
+                            db.collection("Players").document(documentId)
+                                    .update(
+                                            "points", points+pointsEarned
+                                    );
+                            Log.d("DB", "DocumentSnapshot data: " + document.getData()+ document.get("points"));
+                            Log.d("DB", String.valueOf(pointsL));
+                        } else {
+                            Log.d("DB", "No such document");
+                        }
+                    } else {
+                        Log.d("DB", "get failed with ", task.getException());
+                    }
+                }
+            });
             System.out.println("ASDHDOFHSW");
 
 
