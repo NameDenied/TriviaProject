@@ -198,12 +198,14 @@ public class questionScreen extends AppCompatActivity {
         ImageView images = findViewById(R.id.imageView2);
 
         Spinner dropdown = findViewById(R.id.qspinner);
+        View someView = findViewById(R.id.mainlayout);
         String SelectedAnswer = String.valueOf(dropdown.getSelectedItem());
         System.out.println(SelectedAnswer);
         System.out.println(askQ[ind].getCorrectAnswer());
         if(askQ[ind].getCorrectAnswer().equals(SelectedAnswer)){
             System.out.println("CORRECTOMUNDO");
             pointsEarned = pointsEarned+1;
+            someView.setBackgroundColor(Color.GREEN);
             //int curpoints = 0;
             //System.out.println(db.collection("Players").document(documentId));
             DocumentReference docRef = db.collection("Players").document(documentId);
@@ -220,6 +222,7 @@ public class questionScreen extends AppCompatActivity {
                                     .update(
                                             "points", points+pointsEarned
                                     );
+
                             Log.d("DB", "DocumentSnapshot data: " + document.getData()+ document.get("points"));
                             Log.d("DB", String.valueOf(pointsL));
                         } else {
@@ -235,6 +238,7 @@ public class questionScreen extends AppCompatActivity {
 
         }else{
             System.out.println("OOF YOU SUCK");
+            someView.setBackgroundColor(Color.RED);
         }
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
         //ScreenView.setBackgroundResource(R.color.green);
@@ -244,13 +248,15 @@ public class questionScreen extends AppCompatActivity {
             public void run() {
                 //Do something after 100ms
                 System.out.println("IT RUNSS");
+                someView.setBackgroundColor(Color.WHITE);
                 ind = ind + 1;
-                ind = Math.min(ind, 4);
-                System.out.println(askQ[ind].getImage());
+//                ind = Math.min(ind, 4);
+                //System.out.println(askQ[ind].getImage());
 
                 //images.setImageResource(R.drawable.askQ[ind].getImage());
-                images.setImageResource(Integer.parseInt(askQ[ind].getImage()));
+
                 if (ind < 5){
+                    images.setImageResource(Integer.parseInt(askQ[ind].getImage()));
                     TextView ThemeText = findViewById(R.id.themeText);
                     ThemeText.setText(askQ[ind].getQuestion());
                     String[] items = new String[askQ[ind].getAnswer().length];
@@ -269,6 +275,9 @@ public class questionScreen extends AppCompatActivity {
                     System.out.println(askQ[ind].getCorrectAnswer());
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
                     dropdown.setAdapter(adapter);
+                }else{
+                    Intent intent = new Intent(questionScreen.this, choosingTheme.class);
+                    startActivity(intent);
                 }
             }
         }, 300);
