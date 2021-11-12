@@ -41,4 +41,11 @@ public class choosingTheme extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public void startLButton(View v) {
+        Intent intent = new Intent(this, lightningScreen.class);
+
+
+        startActivity(intent);
+
+    }
 }

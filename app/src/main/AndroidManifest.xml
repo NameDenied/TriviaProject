@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TriviaGroup">
         <activity
+            android:name=".lightningScreen"
+            android:exported="true" />
+        <activity
             android:name=".shopScreen"
             android:exported="true" />
         <activity

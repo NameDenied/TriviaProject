@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -21,12 +22,12 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class questionScreen extends AppCompatActivity {
+public class lightningScreen extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String documentId = MainActivity.documentId;
     int pointsEarned = 0;
     String[] tst = {"What is life", "george", "god", "death"};
-    Question[] askQ = {new Question(tst),new Question(tst),new Question(tst),new Question(tst),new Question(tst)};
+    Question[] askQ = new Question[20];
     int ind = 0;
     View ScreenView;//SET IDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
     int index = -1;
@@ -37,32 +38,32 @@ public class questionScreen extends AppCompatActivity {
         ImageView images = findViewById(R.id.imageView2);
         Intent intent = getIntent();
 
-        String category = intent.getStringExtra("trivia name");
+//        String category = intent.getStringExtra("trivia name");
         TextView ThemeTextMAIN = findViewById(R.id.ThemeText);
-        ThemeTextMAIN.setText(category);
-        System.out.println(category);
+        ThemeTextMAIN.setText("ALL");
+//        System.out.println(category);
 
 
-        if(category.equals("Marvel")){
-            System.out.println("INNNNNNNNNNNNNNNNN");
-            index = 0;
-        }
-
-        else if (category.equals("Star Wars")) {
-            System.out.println("INNNNNNNNNNNNNNNNN");
-            index = 1;
-        }
-        else if (category.equals("Sports")) {
-            System.out.println("INNNNNNNNNNNNNNNNN");
-            index = 2;
-        }
-        else if (category.equals("Disney")) {
-            System.out.println("INNNNNNNNNNNNNNNNN");
-            index = 3;
-        }
-        else{
-            index = 4;
-        }
+//        if(category.equals("Marvel")){
+//            System.out.println("INNNNNNNNNNNNNNNNN");
+//            index = 0;
+//        }
+//
+//        else if (category.equals("Star Wars")) {
+//            System.out.println("INNNNNNNNNNNNNNNNN");
+//            index = 1;
+//        }
+//        else if (category.equals("Sports")) {
+//            System.out.println("INNNNNNNNNNNNNNNNN");
+//            index = 2;
+//        }
+//        else if (category.equals("Disney")) {
+//            System.out.println("INNNNNNNNNNNNNNNNN");
+//            index = 3;
+//        }
+//        else{
+//            index = 4;
+//        }
 
 
 //        String[][] correctA = {{"Tony Stark", "6","The ten rings","25","Wakanda", "Loki","Clint Barton","God of Mischief"}};
@@ -82,21 +83,21 @@ public class questionScreen extends AppCompatActivity {
         String[][] dcComics ={{"What's Superman's birth name?",dcImages[0], "Kal'el", "Clark", "Kent"}, {"Which superhero was modeled after the Amazons of Ancient Greece?",dcImages[1], "Wonder Woman", "Athena", "Harley Quinn"}, {"What's the name of Batman's butler?",dcImages[2], "Alfred", "James", "Henry"}, {"To which villain is Harley Quinn attached to?",dcImages[3], "Joker", "Two-Face", "Bane"}, {"What does DC stand for?",dcImages[4], "Detective Comics", "District Comics", "Day Comics"}, {"Who is Superman's archnemesis?",dcImages[5], "Lex Luthor", "Batman", "Doomsday"}, {"Who killed Thomas and Martha Wayne?",dcImages[6], "Joe Chill", " The Joker", "The Penguin"}, {"Which superhero was born with the curse of Kordax?",dcImages[7], "Aquaman", "Wonder Woman", "Green Lantern"}};
 
         //String[][][] Questions = {{{"What is Iron Man’s real name?", "Peter Parker", "Tony Stark", "Steve Rogers"}, {"How many infinity stones does Thanos need?", "3", "4", "6"}, {"What is the main weapon used by Shang Chi and his father?", "The ten rings", "Infinity Gauntlet", "Mjollnir"}, {"How many Marvel movies have been made?", "23", "18", "25"},{"What is the setting of Black Panther?", "Australia", "Wakanda", "China", "Asgard"}, {"What is the name of Thor’s brother?", "Deadpool", "Loki", "Odin"}, {"What is Hawkeye's real name?", "Bart CLinton", "Clint Barton", "Cole Philson"}, {"What is Loki's title?", "God of Mischief", "God of Evil", "God of Tricks"}}};
-        Question[][] Questions = {{new Question(marvel[0]), new Question(marvel[1]), new Question(marvel[2]), new Question(marvel[3]),new Question(marvel[4]),new Question(marvel[5]),new Question(marvel[6]), new Question(marvel[7])},
-                {new Question(starWars[0]), new Question(starWars[1]), new Question(starWars[2]), new Question(starWars[3]),new Question(starWars[4]),new Question(starWars[5]),new Question(starWars[6]), new Question(starWars[7])},
-                {new Question(sports[0]), new Question(sports[1]), new Question(sports[2]), new Question(sports[3]),new Question(sports[4]),new Question(sports[5]),new Question(sports[6]), new Question(sports[7])},
-                {new Question(disney[0]), new Question(disney[1]), new Question(disney[2]), new Question(disney[3]),new Question(disney[4]),new Question(disney[5]),new Question(disney[6]), new Question(disney[7])},
-                {new Question(dcComics[0]), new Question(dcComics[1]), new Question(dcComics[2]), new Question(dcComics[3]),new Question(dcComics[4]),new Question(dcComics[5]),new Question(dcComics[6]), new Question(dcComics[7])}};
+        Question[] Questions = {new Question(marvel[0]), new Question(marvel[1]), new Question(marvel[2]), new Question(marvel[3]),new Question(marvel[4]),new Question(marvel[5]),new Question(marvel[6]), new Question(marvel[7]),
+                new Question(starWars[0]), new Question(starWars[1]), new Question(starWars[2]), new Question(starWars[3]),new Question(starWars[4]),new Question(starWars[5]),new Question(starWars[6]), new Question(starWars[7]),
+                new Question(sports[0]), new Question(sports[1]), new Question(sports[2]), new Question(sports[3]),new Question(sports[4]),new Question(sports[5]),new Question(sports[6]), new Question(sports[7]),
+                new Question(disney[0]), new Question(disney[1]), new Question(disney[2]), new Question(disney[3]),new Question(disney[4]),new Question(disney[5]),new Question(disney[6]), new Question(disney[7]),
+                new Question(dcComics[0]), new Question(dcComics[1]), new Question(dcComics[2]), new Question(dcComics[3]),new Question(dcComics[4]),new Question(dcComics[5]),new Question(dcComics[6]), new Question(dcComics[7])};
         Question[] questionOrder = new Question[marvel.length];
-        int len = Questions[index].length;
+        int len = Questions.length;
         System.out.println(len);
 
 //        System.out.println(index);
 //        System.out.println(len);
-        int count = 5;
+        int count = len-20;
 
 
-        int[] useQ = {-1,-1,-1,-1,-1};
+        int[] useQ = new int[len-20];
 
 //        while(count > 0){
 //            System.out.println(count+" "+"COUNTTTT");
@@ -131,8 +132,8 @@ public class questionScreen extends AppCompatActivity {
                     }
                 }
                 if(!found){
-                    askQ[5-count] = Questions[index][chosen];
-                    useQ[5-count] = chosen;
+                    askQ[len-20-count] = Questions[chosen];
+                    useQ[len-20-count] = chosen;
                 }else{
                     chosen = (int)(Math.random()*len);
                 }
@@ -194,7 +195,36 @@ public class questionScreen extends AppCompatActivity {
 
     }
 
-
+//    private void startTimer() {
+//        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//                mTimeLeftInMillis = millisUntilFinished;
+//                //updateCountDownText();
+//
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                mTimerRunning = false;
+//                mButtonStartPause.setText("Start");
+//                mButtonStartPause.setVisibility(View.INVISIBLE);
+//                mButtonReset.setVisibility(View.VISIBLE);
+//            }
+//        }.start();
+//
+//        mTimerRunning = true;
+//        mButtonStartPause.setText("pause");
+//        mButtonReset.setVisibility(View.INVISIBLE);
+//    }
+//    private void updateCountDownText(){
+//        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+//        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+//
+//        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+//
+//        mTextViewCountDown.setText(timeLeftFormatted);
+//    }
 
     public void submitQuestion(View v){
         ImageView images = findViewById(R.id.imageView2);
@@ -252,6 +282,7 @@ public class questionScreen extends AppCompatActivity {
                 System.out.println("IT RUNSS");
                 someView.setBackgroundColor(Color.WHITE);
                 ind = ind + 1;
+                ind = ind % 7;
 //                ind = Math.min(ind, 4);
                 //System.out.println(askQ[ind].getImage());
 
@@ -278,7 +309,7 @@ public class questionScreen extends AppCompatActivity {
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
                     dropdown.setAdapter(adapter);
                 }else{
-                    Intent intent = new Intent(questionScreen.this, choosingTheme.class);
+                    Intent intent = new Intent(lightningScreen.this, choosingTheme.class);
                     startActivity(intent);
                 }
             }
