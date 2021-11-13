@@ -24,12 +24,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class questionScreen extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String documentId = MainActivity.documentId;
+    //TextView pointsView = findViewById(R.id.PointsView);
     int pointsEarned = 0;
     String[] tst = {"What is life", "george", "god", "death"};
     Question[] askQ = {new Question(tst),new Question(tst),new Question(tst),new Question(tst),new Question(tst)};
     int ind = 0;
     View ScreenView;//SET IDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
     int index = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,9 +65,25 @@ public class questionScreen extends AppCompatActivity {
         else{
             index = 4;
         }
-
-
-//        String[][] correctA = {{"Tony Stark", "6","The ten rings","25","Wakanda", "Loki","Clint Barton","God of Mischief"}};
+        TextView pointsView = findViewById(R.id.PointsView);
+        DocumentReference docRef = db.collection("Players").document(documentId);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        long pointsL = (long)document.get("points");
+                        pointsView.setText("Points: "+pointsL);
+                    } else {
+                        Log.d("DB", "No such document");
+                    }
+                } else {
+                    Log.d("DB", "get failed with ", task.getException());
+                }
+            }
+        });
+        String[][] correctA = {{"Tony Stark", "6","The ten rings","25","Wakanda", "Loki","Clint Barton","God of Mischief"}};
 
         String[] marvelImages = {Integer.toString(R.drawable.ironman), Integer.toString(R.drawable.thanos), Integer.toString(R.drawable.shangchi), Integer.toString(R.drawable.marvel), Integer.toString(R.drawable.blackpanther), Integer.toString(R.drawable.thor), Integer.toString(R.drawable.hawkeye), Integer.toString(R.drawable.loki)};
         String[] starWarsImages = {Integer.toString(R.drawable.luke), Integer.toString(R.drawable.clonetrooper), Integer.toString(R.drawable.clonetrooper), Integer.toString(R.drawable.obi), Integer.toString(R.drawable.tatooine), Integer.toString(R.drawable.kylo), Integer.toString(R.drawable.deathstar), Integer.toString(R.drawable.robots)};
@@ -198,7 +216,7 @@ public class questionScreen extends AppCompatActivity {
 
     public void submitQuestion(View v){
         ImageView images = findViewById(R.id.imageView2);
-
+        TextView pointsView = findViewById(R.id.PointsView);
         Spinner dropdown = findViewById(R.id.qspinner);
         View someView = findViewById(R.id.mainlayout);
         String SelectedAnswer = String.valueOf(dropdown.getSelectedItem());
@@ -224,7 +242,7 @@ public class questionScreen extends AppCompatActivity {
                                     .update(
                                             "points", points+pointsEarned
                                     );
-
+                            pointsView.setText("Points: "+(points+pointsEarned));
                             Log.d("DB", "DocumentSnapshot data: " + document.getData()+ document.get("points"));
                             Log.d("DB", String.valueOf(pointsL));
                         } else {
@@ -235,6 +253,7 @@ public class questionScreen extends AppCompatActivity {
                     }
                 }
             });
+
             System.out.println("ASDHDOFHSW");
 
 
