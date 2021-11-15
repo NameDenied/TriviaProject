@@ -43,7 +43,24 @@ public class lightningScreen extends AppCompatActivity {
         ThemeTextMAIN.setText("ALL");
 //        System.out.println(category);
 
-
+        TextView pointsView = findViewById(R.id.PointsView);
+        DocumentReference docRef = db.collection("Players").document(documentId);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        long pointsL = (long)document.get("points");
+                        pointsView.setText("Points: "+pointsL);
+                    } else {
+                        Log.d("DB", "No such document");
+                    }
+                } else {
+                    Log.d("DB", "get failed with ", task.getException());
+                }
+            }
+        });
 //        if(category.equals("Marvel")){
 //            System.out.println("INNNNNNNNNNNNNNNNN");
 //            index = 0;
@@ -97,7 +114,7 @@ public class lightningScreen extends AppCompatActivity {
         int count = len-20;
 
 
-        int[] useQ = new int[len-20];
+        int[] useQ = new int[count];
 
 //        while(count > 0){
 //            System.out.println(count+" "+"COUNTTTT");
@@ -132,8 +149,8 @@ public class lightningScreen extends AppCompatActivity {
                     }
                 }
                 if(!found){
-                    askQ[len-20-count] = Questions[chosen];
-                    useQ[len-20-count] = chosen;
+                    askQ[useQ.length-count] = Questions[chosen];
+                    useQ[useQ.length-count] = chosen;
                 }else{
                     chosen = (int)(Math.random()*len);
                 }
@@ -254,7 +271,8 @@ public class lightningScreen extends AppCompatActivity {
                                     .update(
                                             "points", points+pointsEarned
                                     );
-
+                            TextView pointsView = findViewById(R.id.PointsView);
+                            pointsView.setText("Points: "+(points+pointsEarned));
                             Log.d("DB", "DocumentSnapshot data: " + document.getData()+ document.get("points"));
                             Log.d("DB", String.valueOf(pointsL));
                         } else {
@@ -282,13 +300,13 @@ public class lightningScreen extends AppCompatActivity {
                 System.out.println("IT RUNSS");
                 someView.setBackgroundColor(Color.WHITE);
                 ind = ind + 1;
-                ind = ind % 7;
+                ind = ind % askQ.length;
 //                ind = Math.min(ind, 4);
                 //System.out.println(askQ[ind].getImage());
 
                 //images.setImageResource(R.drawable.askQ[ind].getImage());
 
-                if (ind < 5){
+                //if (ind < 1000){
                     images.setImageResource(Integer.parseInt(askQ[ind].getImage()));
                     TextView ThemeText = findViewById(R.id.themeText);
                     ThemeText.setText(askQ[ind].getQuestion());
@@ -308,10 +326,10 @@ public class lightningScreen extends AppCompatActivity {
                     System.out.println(askQ[ind].getCorrectAnswer());
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
                     dropdown.setAdapter(adapter);
-                }else{
-                    Intent intent = new Intent(lightningScreen.this, choosingTheme.class);
-                    startActivity(intent);
-                }
+                //}//else{
+//                    Intent intent = new Intent(lightningScreen.this, choosingTheme.class);
+//                    startActivity(intent);
+                //}
             }
         }, 300);
 //        System.out.println("IT RUNSSSSS222222");

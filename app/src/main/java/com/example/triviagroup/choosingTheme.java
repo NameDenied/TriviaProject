@@ -43,7 +43,7 @@ public class choosingTheme extends AppCompatActivity {
     }
     public void startLButton(View v) {
         Intent intent = new Intent(this, lightningScreen.class);
-
+        System.out.println("WOWLOL");
 
         startActivity(intent);
 
