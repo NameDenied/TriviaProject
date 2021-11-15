@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TriviaGroup">
         <activity
+            android:name=".EndingScreen"
+            android:exported="true" />
+        <activity
             android:name=".lightningScreen"
             android:exported="true" />
         <activity
