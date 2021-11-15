@@ -20,13 +20,14 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64"
+        app:layout_constraintVertical_bias="0.801"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/ThemeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/francois_one"
         android:text="Theme"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,8 +39,9 @@
 
     <TextView
         android:id="@+id/themeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="388dp"
+        android:layout_height="123dp"
+        android:fontFamily="@font/fredoka_one"
         android:text="Question"
         android:textSize="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,10 +56,11 @@
         android:id="@+id/imageView2"
         android:layout_width="211dp"
         android:layout_height="160dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="264dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.568"
         app:srcCompat="@drawable/supermanflying" />
 
     <Button
@@ -68,19 +71,23 @@
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.754" />
+        app:layout_constraintVertical_bias="0.942" />
 
     <TextView
         android:id="@+id/PointsView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="163dp"
+        android:layout_height="80dp"
+        android:fontFamily="@font/nosifer"
         android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

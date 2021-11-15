@@ -10,24 +10,28 @@
 
     <TextView
         android:id="@+id/welcomeText"
-        android:layout_width="175dp"
-        android:layout_height="37dp"
+        android:layout_width="220dp"
+        android:layout_height="23dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="Enter Your Username Here:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.217" />
+
+    <TextView
+        android:id="@+id/authTV"
+        android:layout_width="285dp"
+        android:layout_height="52dp"
+        android:fontFamily="@font/merienda_one"
         android:text="Enter Your Username Here:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.082" />
-
-    <TextView
-        android:id="@+id/authTV"
-        android:layout_width="175dp"
-        android:layout_height="37dp"
-        android:text="Enter Your Username Here:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.624" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -40,7 +44,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.148" />
+        app:layout_constraintVertical_bias="0.283" />
 
     <Button
         android:id="@+id/startTrivia"
@@ -53,7 +57,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.607" />
+        app:layout_constraintVertical_bias="0.778" />
 
     <Button
         android:id="@+id/signIn"
@@ -66,7 +70,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.419" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <Button
         android:id="@+id/signUp"
@@ -79,6 +83,18 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.304" />
+        app:layout_constraintVertical_bias="0.389" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="140dp"
+        android:layout_height="102dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.031"
+        app:srcCompat="@drawable/madlogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
