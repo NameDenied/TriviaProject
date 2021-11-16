@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,11 +29,13 @@ public class lightningScreen extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String documentId = MainActivity.documentId;
     int pointsEarned = 0;
+    int failedEarned = 0;
     String[] tst = {"What is life", "george", "god", "death"};
     Question[] askQ = new Question[20];
     int ind = 0;
     View ScreenView;//SET IDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
     int index = -1;
+    int secondsSinceStart = 0;
     private TextView mCountDownTimerText;
     private CountDownTimer mCountDownTimer;
 
@@ -228,6 +231,7 @@ public class lightningScreen extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
+                secondsSinceStart++;
                 updateCountDownText();
             }
 
@@ -301,6 +305,8 @@ public class lightningScreen extends AppCompatActivity {
         if(askQ[ind].getCorrectAnswer().equals(SelectedAnswer)){
             System.out.println("CORRECTOMUNDO");
             pointsEarned = pointsEarned+1;
+            String[] cor = {"Correct!", "N!ce!", "Right on!", "You're Killing it!", "ACE"};
+            Toast.makeText(lightningScreen.this, cor[(pointsEarned/6)%5], Toast.LENGTH_SHORT).show();
             someView.setBackgroundColor(Color.GREEN);
             //int curpoints = 0;
             //System.out.println(db.collection("Players").document(documentId));
@@ -334,7 +340,41 @@ public class lightningScreen extends AppCompatActivity {
 
 
         }else{
+            failedEarned++;
+            String[] failMsg = {"Off, nice try!", "RIP!", "OOF!", "You Failed. Try again.", "I feel bad.", "Glad I'm not you right now.", "wow.. just wow..", "EVEN I could get the question correct", "Bruh moment", "Just stop getting these wrong", "Are you guessing all these questions?", "My grandma could do better.", "I should make you lose points for failing this badly", "Please stop.. please?!?", "REALLY???"};
+            Toast.makeText(lightningScreen.this, failMsg[(failedEarned)%failMsg.length], Toast.LENGTH_SHORT).show();
             System.out.println("OOF YOU SUCK");
+            if((pointsEarned - failedEarned)/(secondsSinceStart/3+1) < -1){
+
+                DocumentReference docRef = db.collection("Players").document(documentId);
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                long pointsL = (long)document.get("points");
+                                int points = (int)pointsL;
+                                System.out.println(points);
+                                db.collection("Players").document(documentId)
+                                        .update(
+                                                "points", points-pointsEarned-1
+                                        );
+                                TextView pointsView = findViewById(R.id.PointsView);
+                                pointsView.setText("Points: "+(points-pointsEarned-1));
+                                Log.d("DB", "DocumentSnapshot data: " + document.getData()+ document.get("points"));
+                                Log.d("DB", String.valueOf(pointsL));
+                            } else {
+                                Log.d("DB", "No such document");
+                            }
+                        } else {
+                            Log.d("DB", "get failed with ", task.getException());
+                        }
+                    }
+                });
+
+
+            }
             someView.setBackgroundColor(Color.RED);
         }
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_dropdown_item, items);

@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,6 +27,7 @@ public class questionScreen extends AppCompatActivity {
     String documentId = MainActivity.documentId;
     //TextView pointsView = findViewById(R.id.PointsView);
     int pointsEarned = 0;
+    int failedEarned = 0;
     String[] tst = {"What is life", "george", "god", "death"};
     Question[] askQ = {new Question(tst),new Question(tst),new Question(tst),new Question(tst),new Question(tst)};
     int ind = 0;
@@ -223,8 +225,11 @@ public class questionScreen extends AppCompatActivity {
         System.out.println(SelectedAnswer);
         System.out.println(askQ[ind].getCorrectAnswer());
         if(askQ[ind].getCorrectAnswer().equals(SelectedAnswer)){
+
             System.out.println("CORRECTOMUNDO");
             pointsEarned = pointsEarned+1;
+            String[] cor = {"Correct!", "N!ce!", "Right on!", "You're Killing it!", "ACE"};
+            Toast.makeText(questionScreen.this, cor[pointsEarned-1], Toast.LENGTH_SHORT).show();
             someView.setBackgroundColor(Color.GREEN);
             //int curpoints = 0;
             //System.out.println(db.collection("Players").document(documentId));
@@ -258,6 +263,9 @@ public class questionScreen extends AppCompatActivity {
 
 
         }else{
+            failedEarned++;
+            String[] inc = {"Off, nice try!", "RIP!", "OOF!", "You're FAILING BADLY!", "ACE.. of failure"};
+            Toast.makeText(questionScreen.this, inc[failedEarned-1], Toast.LENGTH_SHORT).show();
             System.out.println("OOF YOU SUCK");
             someView.setBackgroundColor(Color.RED);
         }
