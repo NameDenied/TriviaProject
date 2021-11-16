@@ -358,10 +358,10 @@ public class lightningScreen extends AppCompatActivity {
                                 System.out.println(points);
                                 db.collection("Players").document(documentId)
                                         .update(
-                                                "points", points-pointsEarned-1
+                                                "points", points-pointsEarned*5-1
                                         );
                                 TextView pointsView = findViewById(R.id.PointsView);
-                                pointsView.setText("Points: "+(points-pointsEarned-1));
+                                pointsView.setText("Points: "+(points-pointsEarned*5-1));
                                 Log.d("DB", "DocumentSnapshot data: " + document.getData()+ document.get("points"));
                                 Log.d("DB", String.valueOf(pointsL));
                             } else {
