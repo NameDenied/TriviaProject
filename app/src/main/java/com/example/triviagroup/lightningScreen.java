@@ -22,6 +22,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Locale;
+
 public class lightningScreen extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String documentId = MainActivity.documentId;
@@ -31,13 +33,21 @@ public class lightningScreen extends AppCompatActivity {
     int ind = 0;
     View ScreenView;//SET IDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
     int index = -1;
+    private TextView mCountDownTimerText;
+    private CountDownTimer mCountDownTimer;
+
+    private boolean mTimerRunning;
+
+    private long mTimeLeftInMillis = 60000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question_screen);
+        setContentView(R.layout.activity_lightning_screen);
         ImageView images = findViewById(R.id.imageView2);
         Intent intent = getIntent();
 
+
+        mCountDownTimerText = findViewById(R.id.CountdownText);
 //        String category = intent.getStringExtra("trivia name");
         TextView ThemeTextMAIN = findViewById(R.id.ThemeText);
         ThemeTextMAIN.setText("ALL");
@@ -209,8 +219,45 @@ public class lightningScreen extends AppCompatActivity {
 
         //set the spinners adapter to the previously created one.
 //        dropdown.setAdapter(adapter);
-
+        updateCountDownText();
+        startTimer();
     }
+
+    private void startTimer() {
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                mTimerRunning = false;
+                Intent intent = new Intent(lightningScreen.this, choosingTheme.class);
+                startActivity(intent);
+//                mButtonStartPause.setText("Start");
+//                mButtonStartPause.setVisibility(View.INVISIBLE);
+//                mButtonReset.setVisibility(View.VISIBLE);
+
+            }
+        }.start();
+
+        mTimerRunning = true;
+        //mButtonStartPause.setText("pause");
+        //mButtonReset.setVisibility(View.INVISIBLE);
+    }
+
+    private void updateCountDownText() {
+        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+
+        mCountDownTimerText.setText(timeLeftFormatted);
+    }
+
+
 
 //    private void startTimer() {
 //        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
