@@ -341,7 +341,7 @@ public class lightningScreen extends AppCompatActivity {
 
         }else{
             failedEarned++;
-            String[] failMsg = {"Off, nice try!", "RIP!", "OOF!", "You Failed. Try again.", "I feel bad.", "Glad I'm not you right now.", "wow.. just wow..", "EVEN I could get the question correct", "Bruh moment", "Just stop getting these wrong", "Are you guessing all these questions?", "My grandma could do better.", "I should make you lose points for failing this badly", "Please stop.. please?!?", "REALLY???"};
+            String[] failMsg = {"Oof, nice try!", "RIP!", "OOF!", "You Failed. Try again.", "I feel bad.", "Glad I'm not you right now.", "wow.. just wow..", "EVEN I could get the question correct", "Bruh moment", "Just stop getting these wrong", "Are you guessing all these questions?", "My grandma could do better.", "I should make you lose points for failing this badly", "Please stop.. please?!?", "REALLY???"};
             Toast.makeText(lightningScreen.this, failMsg[(failedEarned)%failMsg.length], Toast.LENGTH_SHORT).show();
             System.out.println("OOF YOU SUCK");
             if((pointsEarned - failedEarned)/(secondsSinceStart/3+1) < -1){
@@ -385,7 +385,7 @@ public class lightningScreen extends AppCompatActivity {
             public void run() {
                 //Do something after 100ms
                 System.out.println("IT RUNSS");
-                someView.setBackgroundColor(Color.WHITE);
+                someView.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 ind = ind + 1;
                 ind = ind % askQ.length;
 //                ind = Math.min(ind, 4);

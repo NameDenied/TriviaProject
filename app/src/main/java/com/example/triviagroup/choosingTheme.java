@@ -54,4 +54,10 @@ public class choosingTheme extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void settingsClick(View v) {
+        Intent intent = new Intent(this, Settings.class);
+        intent.putExtra("trivia name", "name");
+        startActivity(intent);
+    }
+
 }
