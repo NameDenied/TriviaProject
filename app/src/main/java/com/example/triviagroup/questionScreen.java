@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class questionScreen extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String documentId = MainActivity.documentId;
+    String hexC = choosingTheme.hexColor;
     //TextView pointsView = findViewById(R.id.PointsView);
     int pointsEarned = 0;
     int failedEarned = 0;
@@ -38,6 +39,8 @@ public class questionScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_screen);
+        View someView = findViewById(R.id.mainlayout);
+        someView.setBackgroundColor(Color.parseColor(hexC));
         ImageView images = findViewById(R.id.imageView2);
         Intent intent = getIntent();
 
@@ -277,7 +280,7 @@ public class questionScreen extends AppCompatActivity {
             public void run() {
                 //Do something after 100ms
                 System.out.println("IT RUNSS");
-                someView.setBackgroundColor(Color.WHITE);
+                someView.setBackgroundColor(Color.parseColor(hexC));
                 ind = ind + 1;
 //                ind = Math.min(ind, 4);
                 //System.out.println(askQ[ind].getImage());

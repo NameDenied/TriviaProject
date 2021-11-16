@@ -28,6 +28,7 @@ import java.util.Locale;
 public class lightningScreen extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String documentId = MainActivity.documentId;
+    String hexC = choosingTheme.hexColor;
     int pointsEarned = 0;
     int failedEarned = 0;
     String[] tst = {"What is life", "george", "god", "death"};
@@ -48,8 +49,8 @@ public class lightningScreen extends AppCompatActivity {
         setContentView(R.layout.activity_lightning_screen);
         ImageView images = findViewById(R.id.imageView2);
         Intent intent = getIntent();
-
-
+        View someView = findViewById(R.id.mainlayout);
+        someView.setBackgroundColor(Color.parseColor(hexC));
         mCountDownTimerText = findViewById(R.id.CountdownText);
 //        String category = intent.getStringExtra("trivia name");
         TextView ThemeTextMAIN = findViewById(R.id.ThemeText);
@@ -385,7 +386,7 @@ public class lightningScreen extends AppCompatActivity {
             public void run() {
                 //Do something after 100ms
                 System.out.println("IT RUNSS");
-                someView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                someView.setBackgroundColor(Color.parseColor(hexC));
                 ind = ind + 1;
                 ind = ind % askQ.length;
 //                ind = Math.min(ind, 4);

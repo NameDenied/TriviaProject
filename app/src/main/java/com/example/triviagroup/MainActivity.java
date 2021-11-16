@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                                 user.put("points", 0);
                                 user.put("gmail", email);
                                 user.put("bg", "White");
+                                user.put("hexColor", "#FFFFFF");
                                 user.put("uuid", userToAdd.getUid());
                                 theUser = userToAdd.getUid();
                                 authStatusTV.setText("Signed up " + userToAdd.getEmail() + " successfully");
