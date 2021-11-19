@@ -8,7 +8,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -164,6 +166,12 @@ public class Settings extends AppCompatActivity {
         TextView colorC = findViewById(R.id.ColorChecker);
         colorC.setTextColor(Color.parseColor(finalHex));
         //someView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+
+    }
+    public void goback(View v) {
+        Intent intent = new Intent(this, choosingTheme.class);
+        startActivity(intent);
+
 
     }
 }
