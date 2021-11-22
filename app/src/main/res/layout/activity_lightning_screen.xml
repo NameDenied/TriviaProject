@@ -27,6 +27,7 @@
         android:id="@+id/ThemeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/creepster"
         android:text="Theme"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,14 +55,15 @@
         android:id="@+id/themeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_one"
         android:text="Question"
         android:textSize="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.572"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.192" />
+        app:layout_constraintVertical_bias="0.195" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -73,18 +75,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/supermanflying" />
 
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/confirmButton"
+        android:layout_width="126dp"
+        android:layout_height="90dp"
+        android:background="@drawable/redbut"
         android:onClick="submitQuestion"
-        android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.79" />
+        app:layout_constraintVertical_bias="0.933" />
 
     <TextView
         android:id="@+id/PointsView"

@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.801"
+        app:layout_constraintVertical_bias="0.735"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -60,21 +60,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.568"
+        app:layout_constraintVertical_bias="0.528"
         app:srcCompat="@drawable/supermanflying" />
 
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <ImageButton
+        android:id="@+id/confirmButton"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:background="@drawable/redbut"
         android:onClick="submitQuestion"
-        android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.942" />
+        app:layout_constraintVertical_bias="0.933" />
 
     <TextView
         android:id="@+id/PointsView"
